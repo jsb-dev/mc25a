@@ -1,9 +1,8 @@
-
-
 // PluginProcessor.h
 #pragma once
 #include "../JuceLibraryCode/JuceHeader.h"
 
+// Assigning the Audio Processor type to our own processor class
 class MasteringCompressorAudioProcessor : public juce::AudioProcessor
 {
 public:
@@ -20,8 +19,10 @@ public:
   void processBlock(juce::AudioBuffer<float> &, juce::MidiBuffer &) override;
 
   juce::AudioProcessorEditor *createEditor() override;
+  juce::AudioBuffer<float> wavBuffer;
   bool hasEditor() const override;
 
+  // Functions
   double getTailLengthSeconds() const override;
   bool acceptsMidi() const override;
   bool producesMidi() const override;
@@ -36,7 +37,10 @@ public:
   void getStateInformation(juce::MemoryBlock &destData) override;
   void setStateInformation(const void *data, int sizeInBytes) override;
 
+  void loadWavFile(const juce::AudioBuffer<float> &buffer);
+
 private:
+  // params
   juce::AudioParameterFloat *inputGain;
   juce::AudioParameterFloat *outputGain;
   juce::AudioParameterFloat *saturationAmount;

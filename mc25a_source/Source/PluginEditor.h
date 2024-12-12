@@ -1,12 +1,12 @@
-// PluginEditor.h
 #pragma once
+
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "PluginProcessor.h"
 
 class MasteringCompressorAudioProcessorEditor : public juce::AudioProcessorEditor
 {
 public:
-  explicit MasteringCompressorAudioProcessorEditor(MasteringCompressorAudioProcessor &);
+  MasteringCompressorAudioProcessorEditor(MasteringCompressorAudioProcessor &);
   ~MasteringCompressorAudioProcessorEditor() override;
 
   void paint(juce::Graphics &) override;
@@ -15,12 +15,21 @@ public:
 private:
   MasteringCompressorAudioProcessor &audioProcessor;
 
-  juce::Slider inputGainSlider;
-  juce::Slider outputGainSlider;
-  juce::Slider saturationAmountSlider;
-  juce::Slider softClipAmountSlider;
-  juce::ToggleButton saturationToggle;
-  juce::ToggleButton softClipToggle;
+  juce::Slider inputGainDial;
+  juce::Label inputGainLabel;
+
+  juce::Slider outputGainDial;
+  juce::Label outputGainLabel;
+
+  juce::Slider saturationAmountDial;
+  juce::Label saturationAmountLabel;
+
+  juce::Slider softClipAmountDial;
+  juce::Label softClipAmountLabel;
+
+  juce::TextButton importButton;
+
+  void importWavFile();
 
   JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(MasteringCompressorAudioProcessorEditor)
 };
